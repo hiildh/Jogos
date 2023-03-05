@@ -1,0 +1,63 @@
+import random
+from tabulate import tabulate
+
+def menu():
+    lmenu = [["F", "Fácil: acerte em menos de 10 jogadas"], ["M", "Médio: acerte em menos de 5 jogadas"], ["D", "Dificíl: acerte em menos de 3 jogadas"], ["SAIR", "Encerra o jogo"]]
+    linfo = [["Jogo de adivinhação"], ["Acerte um número aleatório obedecendo as regras a seguir!"]]
+    print(tabulate(linfo, tablefmt = "outline"))
+    print(tabulate(lmenu, headers=["Opção", "Descrição"] ,tablefmt = "outline", colalign=("center", "center")))
+    opc = input("\nOpção escolhida: ")
+    return opc
+
+num = random.randint(0, 100)
+
+while True:
+    op = menu()
+    nome = input("Qual seu nome?\n")
+    if(op == "F" or op == "f"):
+        tent = 10
+        for i in range(1, tent):
+            pal = int(input("Digite seu palpite:"))
+            if(pal == num):
+                print("Vencedor!!\n")
+                print("Parabéns ", nome)
+                print(nome, i)
+                break
+            elif(pal < num):
+                print("Você errou para baixo... tente um número maior.")
+                print("Palpites usados:", i)
+            elif(pal > num):
+                print("Você errou para cima... tente um número menor.")
+                print("Palpites usados:", i)
+    elif(op == "M" or op == "m"):
+        tent = 5
+        for i in range(1, tent):
+            pal = int(input("Digite seu palpite:"))
+            if(pal == num):
+                print("Vencedor!!")
+                print("Parabéns ", nome)
+                break
+            elif(pal < num):
+                print("Você errou para baixo... tente um número maior.")
+                print("Palpites usados:", i)
+            elif(pal > num):
+                print("Você errou para cima... tente um número menor.")
+    elif(op == "D" or op == "d"):
+        tent = 3
+        for i in range(1, tent):
+            pal = int(input("Digite seu palpite:"))
+            if(pal == num):
+                print("Vencedor!!")
+                print("Parabéns ", nome)
+                print(("\n"))
+                break
+            elif(pal < num):
+                print("Você errou para baixo... tente um número maior.")
+                print("Palpites usados:", i)
+            elif(pal > num):
+                print("Você errou para cima... tente um número menor.")
+    elif(op == "SAIR" or op == "sair"):
+        print("Foi um prazer jogar com você", nome)
+        print("Encerrando...")
+        break
+
